@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const authRoutes = require("./auth.routes");
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-  res.json("All good in here");
-});
 
-router.use("/auth", authRoutes);
+router.use("/coins", require("./list.routes"))
+router.use("/auth", require("./auth.routes"))
+router.use("/", require("./exchanges.routes"))
+router.use("/details", require("./details.routes"))
+
 
 module.exports = router;
