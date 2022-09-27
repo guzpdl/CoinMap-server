@@ -22,19 +22,18 @@ const createUser = (req, res, next) => {
         });
       }    
     
-      // Search the database for a user with the username submitted in the form
+      
       userModel.findOne({ username }).then((found) => {
-        // If the user is found, send the message username is taken
+        
         if (found) {
           return res.status(400).json({ errorMessage: "Username already taken." });
         }
     
-        // if user is not found, create a new user - start with hashing the password
+        
         return bcrypt
           .genSalt(saltRounds)
           .then((salt) => bcrypt.hash(password, salt))
           .then((hashedPassword) => {
-            // Create a user and save it in the database
             return userModel.create({
               username,
               password: hashedPassword,
@@ -81,3 +80,7 @@ module.exports = {
     createUser,
     loginUser
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> aeb1b13b4b4cf198c27913b309e1d1784223a725

@@ -3,9 +3,11 @@ const validateToken = require('../middleware/validateToken.middleware');
 
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-  res.json("All good in here");
-});
+
+router.use("/coins", require("./list.routes"))
+router.use("/auth", require("./auth.routes"))
+router.use("/", require("./exchanges.routes"))
+router.use("/details", require("./details.routes"))
 
 router.use('/auth',  require('./auth.routes'))
 router.use('/user', validateToken, require('./user.routes'))

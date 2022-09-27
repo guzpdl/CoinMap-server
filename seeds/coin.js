@@ -14,8 +14,8 @@ mongoose
         .getData()
     })
     .then((data)=>{
-         coinModel
-        .insertMany(data) 
+         return coinModel
+        .create(data) 
     })
     .then(() => {
         console.log('created')

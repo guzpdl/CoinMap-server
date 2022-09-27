@@ -1,5 +1,3 @@
-
-
 | PATH                | METHOD   | RESPONSE | ACTION                  |
 |:-------------------:|----------|----------|-------------------------|
 | /api/coins/home     |  .GET    |          | GET ALL COINS + DETAILS |

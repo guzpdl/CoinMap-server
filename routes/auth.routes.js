@@ -1,13 +1,8 @@
 const { createUser, loginUser, asd } = require("../controller/user.controller");
 
 
+
 const router = require("express").Router();
-
-
-
-
-
-
 
 // --------------------- POST -----------------
 
