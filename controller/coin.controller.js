@@ -18,20 +18,4 @@ const getAllData = (req, res, next) => {
     .catch((err)=> console.log(err))
 }
 
-// const transData = (req, res, next) => {
-//     let coins
-//     coinModel
-//     .find()
-//     .then(list => {
-//          coins = list
-//     })
-//     .then(() => {
-//         return Coins.getData()
-//     })
-//     .then(({results: data}) =>{
-//         res.json({coins, data})
-//     })
-//     .catch((err)=> console.log(err))
-// }
-
 module.exports = {getAllCoins, getAllData }
