@@ -16,7 +16,7 @@ const CoinSchema = new Schema(
         // market_cap: {type: Number},
         // total_volume: {type: Number}, //USD - 24hs
         // price_change_24h: {type: Number},
-        // price_change_percentage_24h: {type: Number},x
+        // price_change_percentage_24h: {type: Number},
         // max_supply: {type: Number},
         // circulating_supply: {type: Number},
         comments: [{ type: Schema.Types.ObjectId, ref: 'comments' }],      
