@@ -1,6 +1,6 @@
 
 module.exports = (app) => {
 
-  app.use('/api/list', require('./list.routes'));
+  app.use('/api', require('./list.routes'));
 
   }
