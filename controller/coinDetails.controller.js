@@ -26,8 +26,7 @@ const coinData = (req, res, next) => {
             price_change_percentage_24h,
             max_supply,
             circulating_supply
-        }, 
-        // market_data:{max_supply},
+        },
         description:{en}, 
         image:{thumb}, 
         market_cap_rank, 
