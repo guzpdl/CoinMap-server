@@ -1,4 +1,4 @@
-const { createUser, loginUser, asd } = require("../controller/user.controller");
+const { createUser, loginUser } = require("../controller/user.controller");
 
 
 

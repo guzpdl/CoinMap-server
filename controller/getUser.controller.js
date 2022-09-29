@@ -16,6 +16,20 @@ const getUser = (req, res, next) => {
         }
 
 
+
+const editUser = (req, res, next) => {
+  const {id} = req.params
+
+  const {username} = req.body
+
+  userModel.findByIdAndUpdate(id, {username})
+  .then(() => {
+    res.sendStatus(204)
+  })
+  .catch(next)
+}
+
 module.exports = {
-        getUser
+        getUser,
+        editUser
 }   

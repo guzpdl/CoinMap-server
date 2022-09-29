@@ -13,7 +13,10 @@ const userSchema = new Schema(
 
     password: {
       type: String, required: true
-    }
+    },
+    favorite_coins: [{
+      type: Schema.Types.ObjectId, ref: 'coin'    
+    }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

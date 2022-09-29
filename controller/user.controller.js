@@ -76,11 +76,9 @@ const loginUser = (req, res, next) => {
 };
 
 
+
+
 module.exports = {
     createUser,
     loginUser
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> aeb1b13b4b4cf198c27913b309e1d1784223a725
