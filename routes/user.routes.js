@@ -1,4 +1,5 @@
-const { getUser, editUser } = require('../controller/getUser.controller');
+const { getUser, editUser, getUserById } = require('../controller/getUser.controller');
+const valdateToken = require('../middleware/validateToken.middleware')
 
 const router = require('express').Router();
 
@@ -6,6 +7,8 @@ const router = require('express').Router();
 // ------------- GET ------------
 
 router.get('/profile', getUser)
+
+router.get('/profile/:id', valdateToken, getUserById)
 
 // --------------- PUT -------------
 

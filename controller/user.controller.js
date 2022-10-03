@@ -5,7 +5,6 @@ const userModel = require("../models/User.model");
 const { signJwt } = require("../utils/jwt.util");
 
 
-
 const createUser = (req, res, next) => {
 
     const { username, password, email } = req.body;
@@ -20,15 +19,13 @@ const createUser = (req, res, next) => {
         return res.status(400).json({
           errorMessage: "Your password needs to be at least 8 characters long.",
         });
-      }    
-    
+      }        
       
       userModel.findOne({ username }).then((found) => {
         
         if (found) {
           return res.status(400).json({ errorMessage: "Username already taken." });
-        }
-    
+        }    
         
         return bcrypt
           .genSalt(saltRounds)
@@ -59,7 +56,6 @@ const createUser = (req, res, next) => {
 
 }
 
-
 const loginUser = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -74,9 +70,6 @@ const loginUser = (req, res, next) => {
     })
     .catch(next);
 };
-
-
-
 
 module.exports = {
     createUser,
