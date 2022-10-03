@@ -53,4 +53,38 @@ const getAllData = (req, res, next) => {
     .catch((err)=> console.log(err))
 }
 
-module.exports = {getAllCoins, getAllData, searchCoin }
+const getTrending = (req, res, next) => {
+    Coins   
+    .trending()
+    .then((data) => {
+        const newData = data.map(({id,
+            symbol,
+            name,
+            image,
+            current_price,
+            market_cap,
+            market_cap_rank,
+            price_change_percentage_1h_in_currency,
+            price_change_percentage_24h_in_currency,
+            price_change_percentage_7d_in_currency,
+            total_volume
+        }) =>{
+            return {
+                id,
+                symbol,
+                name,
+                image,
+                current_price,
+                market_cap,
+                market_cap_rank,
+                price_change_percentage_1h_in_currency,
+                price_change_percentage_24h_in_currency,
+                price_change_percentage_7d_in_currency,
+                total_volume
+            }
+        })
+        res.status(200).json(newData)
+    })
+    .catch((err)=> console.log(err))
+}
+module.exports = {getAllCoins, getAllData, searchCoin, getTrending }
