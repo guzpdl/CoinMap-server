@@ -15,17 +15,30 @@ const getUser = (req, res, next) => {
           }
         }
 
-   const getUserById = (req, res, next) => {
-    const {id} = req.params
-    console.log(id)
-
-    userModel.findById(id)
-    .then((user) => {
-      res.status(200).json(user);
-    })
-    .catch(next)
+   const getFavCoins = (req, res, next) => {
+      const {id} = req.params
+      userModel
+      .findById(id)
+      .select('favorite_coins')
+      .then((userFavs) => {
+        res.status(200).json(userFavs);
+      })
+      .catch(next)
    }     
 
+
+const editFavCoins = (req, res, next) => {
+  const {id} = req.params
+
+  const {favorite_coins} = req.body
+  console.log(favorite_coins);
+
+  userModel.findByIdAndUpdate(id, favorite_coins)
+  .then(() => {
+    res.sendStatus(204)
+  })
+  .catch(next)
+}
 
 const editUser = (req, res, next) => {
   const {id} = req.params
@@ -39,14 +52,10 @@ const editUser = (req, res, next) => {
   .catch(next)
 }
 
-const addFavoriteCoin = (req, res, ext) => {
-  
-
-}
-
 
 module.exports = {
         getUser,
         editUser,
-        getUserById
+        getFavCoins,
+        editFavCoins
 }   

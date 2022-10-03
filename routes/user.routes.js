@@ -1,5 +1,5 @@
-const { getUser, editUser, getUserById } = require('../controller/getUser.controller');
-const valdateToken = require('../middleware/validateToken.middleware')
+const { getUser, editUser, getFavCoins, editFavCoins } = require('../controller/getUser.controller');
+const validateToken = require('../middleware/validateToken.middleware')
 
 const router = require('express').Router();
 
@@ -8,11 +8,21 @@ const router = require('express').Router();
 
 router.get('/profile', getUser)
 
-router.get('/profile/:id', valdateToken, getUserById)
+router.get('/profile/:id', validateToken)
+
+
+router.get('/profile/favs/:id', getFavCoins)
+
 
 // --------------- PUT -------------
 
 router.put('/profile/:id', editUser) 
+
+router.put('/profile/favs/:id', editFavCoins)
+
+
+
+
 
 
 module.exports = router;

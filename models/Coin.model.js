@@ -7,9 +7,7 @@ const CoinSchema = new Schema(
         id: {type: String},
         symbol: {type: String},
         name: {type: String},
-        comments: [{ type: Schema.Types.ObjectId, ref: 'comments' }],    
-
-      
+        comments: [{ type: Schema.Types.ObjectId, ref: 'comments' }],      
     },
     {
         timestamps: true,
