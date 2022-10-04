@@ -1,5 +1,4 @@
 const coinModel = require("../models/Coin.model")
-const details = require("../models/coinDetails.model")
 require('mongoose')
 const Coins = require("../service/api-coingecko")
 
@@ -12,6 +11,16 @@ const getDetails = (req, res, next) => {
         })
         .catch((err) => (console.log(err)))
 
+}
+
+const historicalChart = (req,res, next) => {
+    const {id} = req.params
+    Coins
+    .chart(id)
+    .then((data) => {
+        res.status(200).json(data)
+    })
+    .catch((err) => console.log(err))
 }
 
 const coinData = (req, res, next) => {
@@ -51,4 +60,4 @@ const coinData = (req, res, next) => {
     .catch((err)=> console.log(err))
 }
 
-module.exports = {getDetails, coinData}
+module.exports = {getDetails, coinData, historicalChart}
