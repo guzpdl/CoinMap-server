@@ -1,3 +1,4 @@
+const coinModel = require("../models/Coin.model");
 const userModel = require("../models/User.model")
 
 
@@ -19,7 +20,8 @@ const getUser = (req, res, next) => {
       const {id} = req.params
       userModel
       .findById(id)
-      .select('favorite_coins')
+      .populate('favorite_coins') 
+      // .select('favorite_coins')
       .then((userFavs) => {
         res.status(200).json(userFavs);
       })
@@ -27,13 +29,24 @@ const getUser = (req, res, next) => {
    }     
 
 
-const editFavCoins = (req, res, next) => {
+const updateFavCoins = (req, res, next) => {
   const {id} = req.params
 
-  const {favorite_coins} = req.body
-  console.log(favorite_coins);
+  const {favoriteCoins} = req.body
+  console.log(favoriteCoins);
 
-  userModel.findByIdAndUpdate(id, favorite_coins)
+  coinModel.findOne({id: favoriteCoins})
+  .then((data) => {
+
+    const {_id} = data
+    console.log(data);
+
+  
+  return userModel.findByIdAndUpdate(id, 
+      { $addToSet: { favorite_coins: _id } }
+      )
+    })
+     
   .then(() => {
     res.sendStatus(204)
   })
@@ -57,5 +70,5 @@ module.exports = {
         getUser,
         editUser,
         getFavCoins,
-        editFavCoins
+        updateFavCoins
 }   

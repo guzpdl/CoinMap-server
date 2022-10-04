@@ -1,4 +1,4 @@
-const { getUser, editUser, getFavCoins, editFavCoins } = require('../controller/getUser.controller');
+const { getUser, editUser, getFavCoins, updateFavCoins } = require('../controller/getUser.controller');
 const validateToken = require('../middleware/validateToken.middleware')
 
 const router = require('express').Router();
@@ -18,7 +18,7 @@ router.get('/profile/favs/:id', getFavCoins)
 
 router.put('/profile/:id', editUser) 
 
-router.put('/profile/favs/:id', editFavCoins)
+router.put('/profile/favs/:id', updateFavCoins)
 
 
 
