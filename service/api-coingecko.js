@@ -44,12 +44,6 @@ class Coins {
         .then(({data}) => data)
         .catch(e => console.log(e))
     }
-    global(){
-        return this.axios
-        .get('global')
-        .then(({data}) => data)
-        .catch(e => console.log(e))
-    }
 }
 
 module.exports = new Coins()

@@ -4,7 +4,7 @@ const coinModel = require('../models/Coin.model');
 const Coins = require("../service/api-coingecko")
 
 mongoose
-    .connect('mongodb://localhost:27017')
+    .connect('mongodb://0.0.0.0:27017')
     .then((x) => {
         
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)

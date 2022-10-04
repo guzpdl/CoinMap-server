@@ -4,6 +4,9 @@ const getAllCoins = (req, res, next) => {
     Coins   
     .getCoinList()
     .then((data) => {
+        console.log('---------------------------------------------------------------------------')
+        console.log('DATA ---->', data);
+        console.log('---------------------------------------------------------------------------')
         const newData = data.map(({id,
             symbol,
             name,
@@ -32,7 +35,7 @@ const getAllCoins = (req, res, next) => {
         })
         res.status(200).json(newData)
     })
-    .catch((err)=> console.log(err))
+    .catch((err)=> next(err))
 }
 const searchCoin = (req, res, next) => {
     Coins   
@@ -87,24 +90,5 @@ const getTrending = (req, res, next) => {
     })
     .catch((err)=> console.log(err))
 }
-const global = (req, res, next) => {
-    Coins   
-    .global()
-    .then(({
-        data:{
-                total_market_cap:{usd: totalCap},
-                total_volume:{usd: volume},
-                active_cryptocurrencies
-            }
-        
-    }) => {
-        // const {current_price} = {usd}
-        res.status(200).json({
-            totalCap,
-            volume,
-            active_cryptocurrencies
-        })
-    })
-    .catch((err)=> console.log(err))
-}
-module.exports = {getAllCoins, getAllData, searchCoin, getTrending, global }
+
+module.exports = {getAllCoins, getAllData, searchCoin, getTrending }
