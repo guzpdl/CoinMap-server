@@ -31,6 +31,7 @@ const getUser = (req, res, next) => {
 
 const updateFavCoins = (req, res, next) => {
   const {id} = req.params
+  console.log(id)
 
   const {favoriteCoins} = req.body
   console.log(favoriteCoins);
