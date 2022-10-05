@@ -4,10 +4,7 @@ const getAllCoins = (req, res, next) => {
     Coins   
     .getCoinList()
     .then((data) => {
-        console.log('---------------------------------------------------------------------------')
-        console.log('DATA ---->', data);
-        console.log('---------------------------------------------------------------------------')
-        const newData = data.map(({id,
+        const newData = data.map(({id,  
             symbol,
             name,
             image,
@@ -55,6 +52,9 @@ const getAllData = (req, res, next) => {
     })
     .catch((err)=> console.log(err))
 }
+
+// const makeComment = (req, res, next) => {
+// }
 
 const getTrending = (req, res, next) => {
     Coins   

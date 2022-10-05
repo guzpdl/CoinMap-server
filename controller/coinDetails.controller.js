@@ -1,5 +1,7 @@
 const coinModel = require("../models/Coin.model")
 const details = require("../models/coinDetails.model")
+const commentModel = require("../models/Comment.model")
+const userModel = require("../models/User.model")
 require('mongoose')
 const Coins = require("../service/api-coingecko")
 
@@ -13,6 +15,71 @@ const getDetails = (req, res, next) => {
         .catch((err) => (console.log(err)))
 
 }
+
+const getComments = (req, res, next) => {
+
+    const {id} = req.params
+    console.log('la moneda a la que hay que traerle los comments ---->', id)
+
+    coinModel
+    .findOne({id:id})
+    .populate({path: 'comments', populate: {path: 'user'}})
+    .then(coinInfo => {
+
+        return coinInfo.comments.map(elements => {
+
+            elements.user.username 
+            elements.comment_body 
+
+        })
+        .then(() =>{
+
+            res.status(200).json(details)
+        })
+    })
+    .catch((err) => (console.log(err)))
+}
+
+
+const makeComment = (req, res, next) => {
+
+    const {id: coinId} = req.params
+    const {commentBody} = req.body 
+    const {_id} = req.user
+
+    coinModel
+    .findOne({id: coinId})
+    .then((coinData) => {
+        console.log('ID DEL COIN formato MONGO', coinData._id)
+            
+        return commentModel
+        .create({coin: coinData._id, comment_body: commentBody, user: _id})
+        .then((newComment) => {
+
+            console.log('NUEVO COMENTARIO', newComment)
+            
+            return coinModel
+            .updateOne({_id: newComment.coin},
+                 {$push: {comments: newComment._id}})
+        })
+     }) 
+    .catch((err) => (console.log(err)))
+}
+
+const deleteComment = (req, res, next) => {
+
+    const {id: commentId} = req.params
+    // const {_id} = req.user
+    console.log(commentId)
+
+commentModel
+    .findByIdAndDelete(commentId) 
+    .then(() => {
+    })
+    .catch((err) => (console.log(err)))
+}
+
+
 
 const coinData = (req, res, next) => {
     Coins   
@@ -51,4 +118,4 @@ const coinData = (req, res, next) => {
     .catch((err)=> console.log(err))
 }
 
-module.exports = {getDetails, coinData}
+module.exports = {getDetails, coinData, makeComment, deleteComment, getComments}

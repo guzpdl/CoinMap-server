@@ -1,4 +1,4 @@
-const { getUser, editUser, getFavCoins, updateFavCoins } = require('../controller/getUser.controller');
+const { getUser, editUser, getFavCoins, updateFavCoins, removeFavCoins } = require('../controller/getUser.controller');
 const validateToken = require('../middleware/validateToken.middleware')
 
 const router = require('express').Router();
@@ -10,7 +10,6 @@ router.get('/profile', getUser)
 
 router.get('/profile/:id', validateToken)
 
-
 router.get('/profile/favs/:id', getFavCoins)
 
 
@@ -19,6 +18,8 @@ router.get('/profile/favs/:id', getFavCoins)
 router.put('/profile/:id', editUser) 
 
 router.put('/profile/favs/:id', updateFavCoins)
+
+router.put('/profile/favs/remove/:id', removeFavCoins)
 
 
 
