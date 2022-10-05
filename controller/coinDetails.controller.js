@@ -16,6 +16,16 @@ const getDetails = (req, res, next) => {
 
 }
 
+const historicalChart = (req,res, next) => {
+    const {id} = req.params
+    Coins
+    .chart(id)
+    .then((data) => {
+        res.status(200).json(data)
+    })
+    .catch((err) => console.log(err))
+}
+
 const getComments = (req, res, next) => {
 
     const {id} = req.params
@@ -118,4 +128,4 @@ const coinData = (req, res, next) => {
     .catch((err)=> console.log(err))
 }
 
-module.exports = {getDetails, coinData, makeComment, deleteComment, getComments}
+module.exports = {getDetails, coinData, historicalChart, makeComment, deleteComment, getComments}

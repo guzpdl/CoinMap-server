@@ -19,6 +19,14 @@ class Coins {
         .then(({data}) => data)
         .catch(e => console.log(e))
     }
+    chart(id, days = 365){
+        return this.axios
+        // .get(`coins/${id}/market_chart?vs_currency=usd&days=365&interval=daily`)
+        // .get(`coins/${id}/market_chart?vs_currency=usd&days=365`)
+        .get(`coins/${id}/market_chart?vs_currency=usd&days=${days}`)
+        .then(({data}) => data)
+        .catch(e => console.log(e))
+    }
     search(name){
         return this.axios
         .get(`search?query=${name}`)

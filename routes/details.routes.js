@@ -1,4 +1,4 @@
-const { getDetails, coinData, makeComment, deleteComment, getComments }  = require('../controller/coinDetails.controller');
+const { getDetails, coinData, historicalChart, makeComment, deleteComment, getComments }  = require('../controller/coinDetails.controller');
 const router = require('express').Router();
 const validateToken = require('../middleware/validateToken.middleware')
 
@@ -6,6 +6,7 @@ const validateToken = require('../middleware/validateToken.middleware')
 
 router.get('/:id', getDetails)
 router.get('/coins/:id', coinData)
+router.get('/chart/:id', historicalChart)
 router.get('/coins/comment/:id', getComments)
 
 // -------------- POST ---------------
