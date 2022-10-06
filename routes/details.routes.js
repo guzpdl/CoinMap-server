@@ -7,16 +7,12 @@ const validateToken = require('../middleware/validateToken.middleware')
 router.get('/:id', getDetails)
 router.get('/coins/:id', coinData)
 router.get('/chart/:id', historicalChart)
-router.get('/coins/comment/:id', getComments)
+router.get('/coins/comment/:id', getComments) //bitcoin
 
 // -------------- POST ---------------
-router.post('/coins/comment/:id', validateToken, makeComment)
+router.post('/coins/comment/:id', validateToken, makeComment) //bitcoin
 
 // ---------------- DELETE -----------------
-router.delete('/coins/comment/delete/:id', validateToken, deleteComment)
-
-
-
-
+router.delete('/coins/comment/delete/:id', validateToken, deleteComment) //id del comment
 
 module.exports = router;

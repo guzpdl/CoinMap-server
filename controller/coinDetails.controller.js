@@ -36,17 +36,15 @@ const getComments = (req, res, next) => {
     .populate({path: 'comments', populate: {path: 'user'}})
     .then(coinInfo => {
 
-        return coinInfo.comments.map(elements => {
-
-            elements.user.username 
-            elements.comment_body 
+        return coinInfo.comments.flatMap(elements => {
+            return ([elements.user.username, elements.comment_body]) 
 
         })
-        .then(() =>{
+        })
+        .then((details) =>{
 
             res.status(200).json(details)
         })
-    })
     .catch((err) => (console.log(err)))
 }
 
@@ -71,6 +69,9 @@ const makeComment = (req, res, next) => {
             return coinModel
             .updateOne({_id: newComment.coin},
                  {$push: {comments: newComment._id}})
+        }).then(() => {
+
+            res.status(200).json(details)
         })
      }) 
     .catch((err) => (console.log(err)))
@@ -85,6 +86,7 @@ const deleteComment = (req, res, next) => {
 commentModel
     .findByIdAndDelete(commentId) 
     .then(() => {
+        res.status(200).json(details)
     })
     .catch((err) => (console.log(err)))
 }
