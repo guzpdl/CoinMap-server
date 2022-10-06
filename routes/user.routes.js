@@ -18,7 +18,7 @@ router.get('/profile/favs/:id', getFavCoins)
 router.put('/profile/:id', editUser) 
 
 router.put('/profile/favs/:id', updateFavCoins)
-
+// DELETE
 router.put('/profile/favs/remove/:id', removeFavCoins)
 
 

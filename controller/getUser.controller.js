@@ -4,7 +4,9 @@ const userModel = require("../models/User.model")
 
 const getUser = (req, res, next) => {
     if(req.user){
-        userModel.findById(req.user._id).select('email username').then((user) => {
+        userModel.findById(req.user._id).select('email username favorite_coins')
+        .populate('favorite_coins')
+        .then((user) => {
             if (user) {
                 res.status(200).json(user)
               } else {
@@ -30,15 +32,14 @@ const getUser = (req, res, next) => {
 
 const updateFavCoins = (req, res, next) => {
   const {id} = req.params
-  console.log(id)
 
-  const {favoriteCoins} = req.body
-  console.log(favoriteCoins);
+  const {favCoin} = req.body
 
-  coinModel.findOne({id: favoriteCoins})
+  console.log(favCoin)
+
+  coinModel.findOne({id: favCoin})
   .then((data) => {
     const {_id} = data
-    console.log(data);  
   return userModel.findByIdAndUpdate(id, 
       { $addToSet: { favorite_coins: _id } }
       )
@@ -52,10 +53,10 @@ const updateFavCoins = (req, res, next) => {
 const removeFavCoins = (req, res, next) => {
   const {id} = req.params
 
-  const {favoriteCoins} = req.body
-  console.log(favoriteCoins);
+  const {favCoin} = req.body
+  // console.log(favCoin);
 
-  coinModel.findOne({id: favoriteCoins})
+  coinModel.findOne({id: favCoin})
   .then((data) => {
     const {_id} = data
     console.log(data);  
