@@ -19,7 +19,7 @@ const getDetails = (req, res, next) => {
 const historicalChart = (req,res, next) => {
     const {id} = req.params
     Coins
-    .chart(id)
+    .chart(id, days)
     .then((data) => {
         res.status(200).json(data)
     })
